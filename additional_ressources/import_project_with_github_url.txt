@@ -1,0 +1,29 @@
+How to Clone and Interact with a GitHub Project Using PyCharm
+
+Prerequisites
+PyCharm installed on your computer (Community Edition).
+A GitHub account
+
+Set Up GitHub Integration in PyCharm: Add Your GitHub Account
+    Open Settings:
+        Go to File > Settings (Windows/Linux) or PyCharm > Preferences (macOS).
+        Navigate to Version Control:
+            Select Version Control > GitHub.
+            Log In to GitHub:
+                Click the + button.
+                Choose Log In via GitHub.
+                Authorize PyCharm to access your GitHub account.
+
+
+Clone the GitHub Project in PyCharm
+    Open PyCharm
+    Launch PyCharm.
+    If a project is already open, go to File > Close Project to return to the Welcome screen.
+        Click on Clone repository
+                Enter Repository URL: https://github.com/BenjaminMat/Dauphine_2026_OOP_272.git
+                Choose Directory:
+                    The "Directory" field will auto-fill.
+                    Change it if you prefer a different local path.
+                    Clone the Repository: Click the Clone button.
+                    Wait for PyCharm to clone the repository and set up the project.
+    Or go to File > Project from Version Control and copy past the URL
