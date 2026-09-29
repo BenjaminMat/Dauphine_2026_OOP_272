@@ -67,7 +67,10 @@ class List:
         if index == -1:
             return
 
-        self.pop(index)
+        for i in range(index, self._count - 1):
+            self._elements[i] = self._elements[i + 1]
+
+        del self._elements[self._count - 1]
         self._count -= 1
 
 
