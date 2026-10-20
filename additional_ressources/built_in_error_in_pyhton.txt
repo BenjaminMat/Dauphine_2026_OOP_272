@@ -1,0 +1,82 @@
+# Python built-in exceptions and warnings,
+# Python 3.10 to 3.13
+
+# BaseException
+# (not meant to be caught by ordinary `except Exception`)
+
+# SystemExit              - raised by sys.exit()
+# KeyboardInterrupt       - the user pressed Ctrl+C
+# GeneratorExit           - raised inside a generator when close() is called
+# BaseExceptionGroup      - container for several exceptions at once (3.11+)
+
+# Exception
+
+# ArithmeticError         - base class for math errors
+#   ZeroDivisionError     - division or modulo by zero
+#   OverflowError         - a result is too large for its type
+#   FloatingPointError    - a floating-point operation failed (rare)
+# AssertionError          - an assert statement failed
+# AttributeError          - an object lacks the requested attribute
+# BufferError             - a buffer operation failed
+# EOFError                - input() hit end-of-file without reading data
+# ExceptionGroup          - exception group that subclasses Exception (3.11+)
+# ImportError             - an import failed
+#   ModuleNotFoundError   - the module could not be found
+# LookupError             - base class for missing keys or indices
+#   IndexError            - a sequence index is out of range
+#   KeyError              - a dictionary key does not exist
+# MemoryError             - the operation ran out of memory
+# NameError               - a name is not defined
+#   UnboundLocalError     - a local variable is used before assignment
+# OSError                 - system-level failure (aliases: IOError, EnvironmentError)
+#   FileNotFoundError     - the file or directory does not exist
+#   FileExistsError       - the file already exists
+#   IsADirectoryError     - a file operation was attempted on a directory
+#   NotADirectoryError    - a directory operation was attempted on a file
+#   PermissionError       - insufficient permissions
+#   TimeoutError          - a system operation timed out
+#   InterruptedError      - a system call was interrupted by a signal
+#   BlockingIOError       - a non-blocking operation would block
+#   ChildProcessError     - a child process operation failed
+#   ProcessLookupError    - the target process does not exist
+#   ConnectionError       - base class for connection problems
+#     BrokenPipeError       - writing to a closed pipe or socket
+#     ConnectionAbortedError- the connection was aborted
+#     ConnectionRefusedError- the connection was refused
+#     ConnectionResetError  - the connection was reset by the peer
+# ReferenceError          - a weak reference points to a collected object
+# RuntimeError            - a general error that fits no other category
+#   NotImplementedError   - an abstract method or feature is not implemented
+#   RecursionError        - maximum recursion depth exceeded
+#   PythonFinalizationError - operation attempted during interpreter shutdown (3.13+)
+# StopIteration           - an iterator has no more items (handled internally by for loops)
+# StopAsyncIteration      - an async iterator has no more items
+# SyntaxError             - the code is not valid Python syntax
+#   IndentationError      - incorrect indentation
+#     TabError            - inconsistent use of tabs and spaces
+# SystemError             - internal interpreter error (usually a CPython bug)
+# TypeError               - an operation was applied to an object of the wrong type
+# ValueError              - correct type but inappropriate value
+#   UnicodeError          - base class for Unicode problems
+#     UnicodeDecodeError  - bytes could not be decoded
+#     UnicodeEncodeError  - a string could not be encoded
+#     UnicodeTranslateError - a string could not be translated
+
+
+# Warning
+# (subclass of Exception, but issued via the warnings module, not normally raised)
+
+# UserWarning             - default category for warnings.warn()
+# DeprecationWarning      - a feature is deprecated (hidden by default outside __main__)
+# PendingDeprecationWarning - a feature will be deprecated in the future
+# FutureWarning           - a behavior will change and affects end users
+# RuntimeWarning          - questionable runtime behavior (e.g. coroutine never awaited)
+# SyntaxWarning           - questionable syntax (e.g. `is` compared with a literal)
+# ImportWarning           - a potential import problem
+# UnicodeWarning          - a potential Unicode problem
+# BytesWarning            - bytes and str mixed unsafely (only active with -b)
+# ResourceWarning         - a resource was not closed properly
+# EncodingWarning         - default text encoding used where it matters (3.10+, with -X warn_default_encoding)
+
+# Verify the list on your own interpreter (run this in a shell, not in the file):
+#   python -c "import builtins; print(sorted(n for n in dir(builtins) if n.endswith(('Error', 'Exception', 'Warning', 'Iteration', 'Exit', 'Interrupt'))))"
