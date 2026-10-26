@@ -29,7 +29,8 @@ Create an abstract class Strategy that will serve as the base for all strategies
 
 This class should:
     Include an abstract method generate_signals that will generate trading signals based on input data.
-       Parameters for the class : A dictionary with tickers as keys and positions as values. The dict should be named 
+    Document the method generate_signals with a docstring explaining the parameters and return value (see below):
+        Parameters for the class : A dictionary with tickers as keys and positions as values. The dict should be named 
                                    data_for_signal_generation
         Return: A dictionary with tickers as keys and signals as values.
 
@@ -41,7 +42,9 @@ To Implement the generate_signals method:
     The method should calculate equal-weight signals for each ticker by dividing 1 by the total number of tickers.
     It should return a dictionary where each ticker has an equal weight as its signal.
 """
-#TODO: implement abstract and derived class
+# TODO: Implement the abstract class
+from abc import ABC, abstractmethod
+
 
 """
 Part II : Creating the Portfolio class:
@@ -49,13 +52,12 @@ Part II : Creating the Portfolio class:
 Class Attributes: Based on the provided code framework, create a Portfolio class which should have the following attributes:
                 name: Name of the portfolio.
                 currency: The currency in which the portfolio is denominated.
-                aum: Assets Under Management.
-                nav : The last net asset value computed for the portfolio
-                historical_nav: A dict that keeps track of the historical Net Asset Values.
+                aum : The Asset Under Management computed for the portfolio
+                historical_aum: A dict that keeps track of the aum.
                 positions: A list of Position objects representing the portfolio’s assets.
                 historical_positions : A dict date as key and and dict of positions for this date. 
                 strategy: A strategy object, an instance of a class derived from the Strategy class.
-                
+
                 Initialization: Implement the __init__ method to initialize the portfolio attributes.
 
 Initialize Portfolio Positions: 
@@ -63,8 +65,8 @@ Implement a initialize_position_from_instrument_list method to initialize the po
 list of Instrument objects. Each Instrument should be wrapped in a Position object.
 
 Positions to Dictionary: 
-Implement the _positions_to_dict method which returns a dictionary of positions with ticker symbols as keys and 
-Position objects as values. This will help in rebalancing operations.
+Implement the _positions_to_dict method which returns a dictionary of positions with 
+ticker symbols as keys and Position objects as values. This will help in rebalancing operations.
 
 Rebalancing: Implement the rebalance_portfolio method which performs the following tasks:
     Convert the positions list into a dictionary.
@@ -77,11 +79,11 @@ Portfolio Summary: Implement the portfolio_position_summary method. This method 
     and last close for the assets
 """
 
-# TODO: Implement here the Part II
-
+# TODO: implement the Portfolio class
 
 
 import unittest
+
 
 class TestPortfolio(unittest.TestCase):
     def setUp(self):
@@ -125,22 +127,9 @@ class TestPortfolio(unittest.TestCase):
 
         # Set up the portfolio strategy and portfolio
         self.pft_strategy = EqualWeightStrategy()
-        self.portfolio = Portfolio("Tech Portfolio", "USD", 1000000, 10000, self.pft_strategy)
+        self.portfolio = Portfolio("Tech Portfolio", "USD", 1000000, self.pft_strategy)
         self.portfolio.initialize_position_from_instrument_list([self.equity_1, self.equity_2, self.equity_3,
                                                                  self.equity_4])
-
-    def test_initial_portfolio_summary(self):
-        # Test the initial summary of the portfolio
-        summary = self.portfolio.portfolio_position_summary()
-        expected_data = {
-            "Ticker": ['AAPL', 'MSFT', 'NVDA', 'GOOGLE'],
-            "Weight": [0., 0., 0., 0.],
-            "Quantity": [0., 0., 0., 0.],
-            "Last close": [229.0, 417.14, 417.14, 417.14]
-        }
-
-        expected_df = pd.DataFrame(expected_data)
-        pd.testing.assert_frame_equal(summary, expected_df)
 
     def test_rebalance_portfolio(self):
         # Rebalance the portfolio and check the summary
@@ -165,8 +154,24 @@ class TestPortfolio(unittest.TestCase):
 
         pd.testing.assert_frame_equal(summary, expected_df)
 
+    def test_initial_portfolio_summary(self):
+        # Test the initial summary of the portfolio
+        summary = self.portfolio.portfolio_position_summary()
+        expected_data = {
+            "Ticker": ['AAPL', 'MSFT', 'NVDA', 'GOOGLE'],
+            "Weight": [0., 0., 0., 0.],
+            "Quantity": [0., 0., 0., 0.],
+            "Last close": [229.0, 417.14, 417.14, 417.14]
+        }
+
+        expected_df = pd.DataFrame(expected_data)
+        pd.testing.assert_frame_equal(summary, expected_df)
+
+
+
 def run_tests():
     unittest.main(argv=[''], verbosity=2, exit=False)
+
 
 if __name__ == '__main__':
     run_tests()
