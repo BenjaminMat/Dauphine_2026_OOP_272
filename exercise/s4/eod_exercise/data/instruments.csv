@@ -1,0 +1,5 @@
+ticker,type,ccy,multiplier
+AAPL,equity,USD,
+MSFT,equity,USD,
+FESX,future,EUR,10
+OAT_2034,bond,EUR,
